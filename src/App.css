@@ -148,6 +148,7 @@ body {
 }
 .helpButton:hover {
   background-color: darkgray;
+  padding-right: 40px;
   font-size: larger;
   color: white;
 }

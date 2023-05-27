@@ -1,32 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { checkWin } from '../helpers/helpers';
 
-//This Component governs the Popups during the game
+// The Popup component handles the display of popups during the Hangman game.
 const Popup = ({ correctLetters, wrongLetters, selectedWord, setPlayable, playAgain }) => {
-    let finalMessage = '';
-    let finalMessageRevealWord = '';
-    let playable = true;
+  // Variables to hold the final message and reveal word message
+  let finalMessage = '';
+  let finalMessageRevealWord = '';
+  let playable = true;
 
-    //interacts with the checkWin function in helper.js, via App.js
-    if ( checkWin(correctLetters, wrongLetters, selectedWord) ==='win') {
-        finalMessage = 'Legend Alert - you won!';
-        playable = false;
-    } else if (checkWin(correctLetters, wrongLetters, selectedWord) ==='lose') {
-        finalMessage = 'That must have hurt, you lost!';
-        finalMessageRevealWord = ` ...the word was: ${selectedWord}`;
-        playable = false;
-    }
+  // Use the checkWin function from helpers.js to determine the game outcome
+  if (checkWin(correctLetters, wrongLetters, selectedWord) === 'win') {
+    finalMessage = 'Congratulations! You won!';
+    playable = false;
+  } else if (checkWin(correctLetters, wrongLetters, selectedWord) === 'lose') {
+    finalMessage = 'Oops! You lost!';
+    finalMessageRevealWord = `The word was: ${selectedWord}`;
+    playable = false;
+  }
 
-    useEffect(() => setPlayable(playable));
+  // Use the useEffect hook to update the playability of the game
+  useEffect(() => setPlayable(playable));
+
   return (
-      <div className="popup-container" style={finalMessage !== '' ? {display: 'flex'} : {}}>
-        <div className="popup">
-            <h2>{finalMessage}</h2>
-            <h3>{finalMessageRevealWord}</h3>
-            <button onClick={playAgain}>Play Again</button>
-        </div>
+    // Display the popup container if there is a final message
+    <div className="popup-container" style={finalMessage !== '' ? { display: 'flex' } : {}}>
+      <div className="popup">
+        {/* Display the final message */}
+        <h2>{finalMessage}</h2>
+        {/* Display the reveal word message (if applicable) */}
+        <h3>{finalMessageRevealWord}</h3>
+        {/* Button to play again */}
+        <button onClick={playAgain}>Play Again</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Popup
+export default Popup;

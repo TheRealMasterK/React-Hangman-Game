@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
+// The Notification component handles the display of a notification message.
 const Notification = ({ showNotification }) => {
   return (
-    //This Component interacts with App.js and helper.js. it sets the class of 
-    //the notification-container div based on the value of showNotification.
-    //If showNotification is true, then the class show will be added to the div, 
-    //and if showNotification is false, an empty string will be added to the div.
-    // It shows a notification if the user enters a letter they previously entered 
-    //The CSS is updated bring the notification visible on screen for 2 seconds
+    // The notification-container div has its class dynamically set based on the value of showNotification.
+    // If showNotification is true, the 'show' class is added, which makes the notification visible on the screen.
+    // If showNotification is false, no additional class is added, and the notification is hidden.
+    // This component is used to show a notification when the user enters a letter they have previously entered in the game.
+    // The CSS is responsible for controlling the animation and visibility of the notification, typically for a certain duration.
     <div className={`notification-container ${showNotification ? 'show' : ''}`}>
-      <p>Letter already entered - try again!</p>
+      <p>Letter already entered - please try again!</p>
     </div>
-  )
-}
+  );
+};
 
-export default Notification
+export default Notification;
